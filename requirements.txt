@@ -4,3 +4,7 @@ sqlalchemy==1.4.49
 databases[aiosqlite]
 python-dotenv
 pydantic-settings
+rich
+asgi-correlation-id
+python-json-logger
+logtail-python

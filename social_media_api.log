@@ -1,0 +1,140 @@
+2024-01-16T11:05:26.748Z | INFO     | uvicorn.error:60 - Application startup complete.
+2024-01-16T11:06:16.414Z | DEBUG    | social_media_api.routers.post:36 - SELECT posts.id, posts.body 
+FROM posts
+2024-01-16T11:06:16.434Z | INFO     | uvicorn.access:496 - 127.0.0.1:57212 - "GET /post HTTP/1.1" 200
+2024-01-16T11:13:34.246Z | INFO     | uvicorn.error:264 - Shutting down
+2024-01-16T11:13:34.355Z | INFO     | uvicorn.error:65 - Waiting for application shutdown.
+2024-01-16T11:13:34.360Z | INFO     | uvicorn.error:76 - Application shutdown complete.
+2024-01-16T11:13:34.363Z | INFO     | uvicorn.error:86 - Finished server process [2509]
+2024-01-16T11:13:41.776Z | INFO     | uvicorn.error:60 - Application startup complete.
+2024-01-16T11:14:27.833Z | INFO     | uvicorn.error:264 - Shutting down
+2024-01-16T11:14:27.937Z | INFO     | uvicorn.error:65 - Waiting for application shutdown.
+2024-01-16T11:14:27.942Z | INFO     | uvicorn.error:76 - Application shutdown complete.
+2024-01-16T11:14:27.945Z | INFO     | uvicorn.error:86 - Finished server process [5115]
+2024-01-16T11:14:35.095Z | INFO     | uvicorn.error:60 - Application startup complete.
+2024-01-16T11:16:10.496Z | INFO     | social_media_api.routers.post:31 - Creating post
+2024-01-16T11:16:10.503Z | DEBUG    | social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T11:16:10.573Z | INFO     | uvicorn.access:496 - 127.0.0.1:54754 - "POST /post HTTP/1.1" 201
+2024-01-16T11:16:38.152Z | INFO     | social_media_api.routers.post:55 - Creating comment
+2024-01-16T11:16:38.158Z | INFO     | social_media_api.routers.post:20 - Finding post with id 1
+2024-01-16T11:16:38.164Z | DEBUG    | social_media_api.routers.post:24 - SELECT posts.id, posts.body 
+FROM posts 
+WHERE posts.id = :id_1
+2024-01-16T11:16:38.195Z | DEBUG    | social_media_api.routers.post:65 - INSERT INTO comments (body, post_id) VALUES (:body, :post_id)
+2024-01-16T11:16:38.234Z | INFO     | uvicorn.access:496 - 127.0.0.1:58314 - "POST /comment HTTP/1.1" 201
+2024-01-16T11:17:15.051Z | INFO     | social_media_api.routers.post:44 - Getting all posts
+2024-01-16T11:17:15.055Z | DEBUG    | social_media_api.routers.post:48 - SELECT posts.id, posts.body 
+FROM posts
+2024-01-16T11:17:15.075Z | INFO     | uvicorn.access:496 - 127.0.0.1:34316 - "GET /post HTTP/1.1" 200
+2024-01-16T11:17:20.269Z | INFO     | social_media_api.routers.post:73 - Getting comments on post
+2024-01-16T11:17:20.272Z | DEBUG    | social_media_api.routers.post:77 - SELECT comments.id, comments.body, comments.post_id 
+FROM comments 
+WHERE comments.post_id = :post_id_1
+2024-01-16T11:17:20.290Z | INFO     | uvicorn.access:496 - 127.0.0.1:34324 - "GET /post/0/comment HTTP/1.1" 200
+2024-01-16T11:17:54.409Z | INFO     | social_media_api.routers.post:73 - Getting comments on post
+2024-01-16T11:17:54.415Z | DEBUG    | social_media_api.routers.post:77 - SELECT comments.id, comments.body, comments.post_id 
+FROM comments 
+WHERE comments.post_id = :post_id_1
+2024-01-16T11:17:54.435Z | INFO     | uvicorn.access:496 - 127.0.0.1:38096 - "GET /post/1/comment HTTP/1.1" 200
+2024-01-16T11:18:00.884Z | INFO     | social_media_api.routers.post:84 - Getting post and its comments
+2024-01-16T11:18:00.887Z | INFO     | social_media_api.routers.post:20 - Finding post with id 0
+2024-01-16T11:18:00.890Z | DEBUG    | social_media_api.routers.post:24 - SELECT posts.id, posts.body 
+FROM posts 
+WHERE posts.id = :id_1
+2024-01-16T11:18:00.909Z | ERROR    | social_media_api.routers.post:88 - Post with id 0 not found
+2024-01-16T11:18:00.912Z | INFO     | uvicorn.access:496 - 127.0.0.1:38110 - "GET /post/0 HTTP/1.1" 404
+2024-01-16T11:18:13.176Z | INFO     | social_media_api.routers.post:84 - Getting post and its comments
+2024-01-16T11:18:13.179Z | INFO     | social_media_api.routers.post:20 - Finding post with id 1
+2024-01-16T11:18:13.183Z | DEBUG    | social_media_api.routers.post:24 - SELECT posts.id, posts.body 
+FROM posts 
+WHERE posts.id = :id_1
+2024-01-16T11:18:13.206Z | INFO     | social_media_api.routers.post:73 - Getting comments on post
+2024-01-16T11:18:13.208Z | DEBUG    | social_media_api.routers.post:77 - SELECT comments.id, comments.body, comments.post_id 
+FROM comments 
+WHERE comments.post_id = :post_id_1
+2024-01-16T11:18:13.226Z | INFO     | uvicorn.access:496 - 127.0.0.1:39030 - "GET /post/1 HTTP/1.1" 200
+2024-01-16T14:06:36.487Z | INFO     | uvicorn.error:264 - Shutting down
+2024-01-16T14:06:36.601Z | INFO     | uvicorn.error:65 - Waiting for application shutdown.
+2024-01-16T14:06:36.607Z | INFO     | uvicorn.error:76 - Application shutdown complete.
+2024-01-16T14:06:36.612Z | INFO     | uvicorn.error:86 - Finished server process [5437]
+2024-01-16T14:06:45.903Z | INFO     | uvicorn.error:60 - Application startup complete.
+2024-01-16T14:07:15.937Z | INFO     | uvicorn.error:264 - Shutting down
+2024-01-16T14:07:16.044Z | INFO     | uvicorn.error:65 - Waiting for application shutdown.
+2024-01-16T14:07:16.047Z | INFO     | uvicorn.error:76 - Application shutdown complete.
+2024-01-16T14:07:16.049Z | INFO     | uvicorn.error:86 - Finished server process [13933]
+2024-01-16T14:07:21.878Z | INFO     | uvicorn.error:60 - Application startup complete.
+2024-01-16T16:25:56.768Z | INFO     | uvicorn.error:264 - Shutting down
+2024-01-16T16:25:56.910Z | INFO     | uvicorn.error:65 - Waiting for application shutdown.
+2024-01-16T16:25:56.921Z | INFO     | uvicorn.error:76 - Application shutdown complete.
+2024-01-16T16:25:56.925Z | INFO     | uvicorn.error:86 - Finished server process [14134]
+2024-01-16T16:47:11.025Z | INFO     | [-] uvicorn.error:60 - Application startup complete.
+2024-01-16T16:47:17.000Z | INFO     | [659fb8e8] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:17.006Z | DEBUG    | [659fb8e8] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:17.055Z | INFO     | [659fb8e8] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T16:47:17.126Z | INFO     | [d59a000c] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:17.132Z | DEBUG    | [d59a000c] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:17.188Z | INFO     | [d59a000c] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T16:47:17.269Z | INFO     | [51868e26] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:17.272Z | DEBUG    | [51868e26] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:17.319Z | INFO     | [51868e26] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T16:47:17.441Z | INFO     | [91828e7f] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:17.446Z | DEBUG    | [91828e7f] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:17.493Z | INFO     | [91828e7f] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T16:47:17.607Z | INFO     | [003d4a66] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:17.610Z | DEBUG    | [003d4a66] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:17.654Z | INFO     | [003d4a66] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T16:47:17.793Z | INFO     | [0ceaa8ba] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:17.797Z | DEBUG    | [0ceaa8ba] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:17.834Z | INFO     | [0ceaa8ba] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T16:47:17.950Z | INFO     | [95f99ae1] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:17.953Z | DEBUG    | [95f99ae1] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:18.019Z | INFO     | [95f99ae1] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T16:47:18.144Z | INFO     | [558a3bce] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:18.149Z | DEBUG    | [558a3bce] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:18.188Z | INFO     | [558a3bce] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T16:47:18.310Z | INFO     | [00ad5fc8] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:18.319Z | DEBUG    | [00ad5fc8] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:18.368Z | INFO     | [00ad5fc8] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T16:47:18.446Z | INFO     | [aa100244] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:18.450Z | DEBUG    | [aa100244] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:18.490Z | INFO     | [aa100244] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T16:47:18.614Z | INFO     | [5f591773] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:18.616Z | DEBUG    | [5f591773] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:18.655Z | INFO     | [5f591773] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T16:47:18.782Z | INFO     | [4fead768] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:18.785Z | DEBUG    | [4fead768] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:18.823Z | INFO     | [4fead768] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T16:47:18.958Z | INFO     | [495f14d3] social_media_api.routers.post:31 - Creating post
+2024-01-16T16:47:18.963Z | DEBUG    | [495f14d3] social_media_api.routers.post:36 - INSERT INTO posts (body) VALUES (:body)
+2024-01-16T16:47:19.014Z | INFO     | [495f14d3] uvicorn.access:496 - 127.0.0.1:45018 - "POST /post HTTP/1.1" 201
+2024-01-16T17:18:55.457Z | INFO     | [-] uvicorn.error:264 - Shutting down
+2024-01-16T17:18:55.563Z | INFO     | [-] uvicorn.error:65 - Waiting for application shutdown.
+2024-01-16T17:18:55.567Z | INFO     | [-] uvicorn.error:76 - Application shutdown complete.
+2024-01-16T17:18:55.570Z | INFO     | [-] uvicorn.error:86 - Finished server process [29088]
+{"asctime": "2024-01-16T17:20:35", "msecs": 648.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 60, "message": "Application startup complete."}
+{"asctime": "2024-01-16T17:21:02", "msecs": 981.0, "levelname": "INFO", "correlation_id": "b3b9b532", "name": "social_media_api.routers.post", "lineno": 31, "message": "Creating post"}
+{"asctime": "2024-01-16T17:21:02", "msecs": 987.0, "levelname": "DEBUG", "correlation_id": "b3b9b532", "name": "social_media_api.routers.post", "lineno": 36, "message": "INSERT INTO posts (body) VALUES (:body)"}
+{"asctime": "2024-01-16T17:21:03", "msecs": 31.0, "levelname": "INFO", "correlation_id": "b3b9b532", "name": "uvicorn.access", "lineno": 496, "message": "127.0.0.1:42912 - \"POST /post HTTP/1.1\" 201"}
+{"asctime": "2024-01-16T17:21:03", "msecs": 172.0, "levelname": "INFO", "correlation_id": "6e82dd29", "name": "social_media_api.routers.post", "lineno": 31, "message": "Creating post"}
+{"asctime": "2024-01-16T17:21:03", "msecs": 176.0, "levelname": "DEBUG", "correlation_id": "6e82dd29", "name": "social_media_api.routers.post", "lineno": 36, "message": "INSERT INTO posts (body) VALUES (:body)"}
+{"asctime": "2024-01-16T17:21:03", "msecs": 217.0, "levelname": "INFO", "correlation_id": "6e82dd29", "name": "uvicorn.access", "lineno": 496, "message": "127.0.0.1:42912 - \"POST /post HTTP/1.1\" 201"}
+{"asctime": "2024-01-16T17:21:12", "msecs": 320.0, "levelname": "INFO", "correlation_id": "a65ca00c", "name": "social_media_api.routers.post", "lineno": 31, "message": "Creating post"}
+{"asctime": "2024-01-16T17:21:12", "msecs": 324.0, "levelname": "DEBUG", "correlation_id": "a65ca00c", "name": "social_media_api.routers.post", "lineno": 36, "message": "INSERT INTO posts (body) VALUES (:body)"}
+{"asctime": "2024-01-16T17:21:12", "msecs": 360.0, "levelname": "INFO", "correlation_id": "a65ca00c", "name": "uvicorn.access", "lineno": 496, "message": "127.0.0.1:48898 - \"POST /post HTTP/1.1\" 201"}
+{"asctime": "2024-01-17T11:14:09", "msecs": 424.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 60, "message": "Application startup complete."}
+{"asctime": "2024-01-17T11:17:24", "msecs": 294.0, "levelname": "INFO", "correlation_id": "eb9f0888", "name": "social_media_api.routers.post", "lineno": 31, "message": "Creating post"}
+{"asctime": "2024-01-17T11:17:24", "msecs": 299.0, "levelname": "DEBUG", "correlation_id": "eb9f0888", "name": "social_media_api.routers.post", "lineno": 36, "message": "INSERT INTO posts (body) VALUES (:body)"}
+{"asctime": "2024-01-17T11:17:24", "msecs": 346.0, "levelname": "INFO", "correlation_id": "eb9f0888", "name": "uvicorn.access", "lineno": 496, "message": "127.0.0.1:50976 - \"POST /post HTTP/1.1\" 201"}
+{"asctime": "2024-01-17T11:17:24", "msecs": 452.0, "levelname": "INFO", "correlation_id": "d54cd114", "name": "social_media_api.routers.post", "lineno": 31, "message": "Creating post"}
+{"asctime": "2024-01-17T11:17:24", "msecs": 457.0, "levelname": "DEBUG", "correlation_id": "d54cd114", "name": "social_media_api.routers.post", "lineno": 36, "message": "INSERT INTO posts (body) VALUES (:body)"}
+{"asctime": "2024-01-17T11:17:24", "msecs": 500.0, "levelname": "INFO", "correlation_id": "d54cd114", "name": "uvicorn.access", "lineno": 496, "message": "127.0.0.1:50976 - \"POST /post HTTP/1.1\" 201"}
+{"asctime": "2024-01-17T11:17:26", "msecs": 338.0, "levelname": "INFO", "correlation_id": "775b8e16", "name": "social_media_api.routers.post", "lineno": 44, "message": "Getting all posts"}
+{"asctime": "2024-01-17T11:17:26", "msecs": 344.0, "levelname": "DEBUG", "correlation_id": "775b8e16", "name": "social_media_api.routers.post", "lineno": 48, "message": "SELECT posts.id, posts.body \nFROM posts"}
+{"asctime": "2024-01-17T11:17:26", "msecs": 372.0, "levelname": "INFO", "correlation_id": "775b8e16", "name": "uvicorn.access", "lineno": 496, "message": "127.0.0.1:50976 - \"GET /post HTTP/1.1\" 200"}
+{"asctime": "2024-01-17T11:54:56", "msecs": 152.0, "levelname": "ERROR", "correlation_id": "-", "name": "uvicorn.error", "lineno": 121, "message": "Traceback (most recent call last):\n  File \"/home/isetti/.pyenv/versions/3.11.7/lib/python3.11/logging/config.py\", line 783, in add_handlers\n    logger.addHandler(self.config['handlers'][h])\n                      ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/home/isetti/.pyenv/versions/3.11.7/lib/python3.11/logging/config.py\", line 336, in __getitem__\n    value = dict.__getitem__(self, key)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nKeyError: 'rotatin_file'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/isetti/.pyenv/versions/3.11.7/lib/python3.11/logging/config.py\", line 627, in configure\n    self.configure_logger(name, loggers[name])\n  File \"/home/isetti/.pyenv/versions/3.11.7/lib/python3.11/logging/config.py\", line 808, in configure_logger\n    self.common_logger_config(logger, config, incremental)\n  File \"/home/isetti/.pyenv/versions/3.11.7/lib/python3.11/logging/config.py\", line 800, in common_logger_config\n    self.add_handlers(logger, handlers)\n  File \"/home/isetti/.pyenv/versions/3.11.7/lib/python3.11/logging/config.py\", line 785, in add_handlers\n    raise ValueError('Unable to add handler %r' % h) from e\nValueError: Unable to add handler 'rotatin_file'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/mnt/c/Users/ismae/OneDrive/Trainings/FastAPI/Mastering REST APIs with FastAPI/.venv/lib/python3.11/site-packages/starlette/routing.py\", line 705, in lifespan\n    async with self.lifespan_context(app) as maybe_state:\n  File \"/home/isetti/.pyenv/versions/3.11.7/lib/python3.11/contextlib.py\", line 210, in __aenter__\n    return await anext(self.gen)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/c/Users/ismae/OneDrive/Trainings/FastAPI/Mastering REST APIs with FastAPI/social_media_api/main.py\", line 15, in lifespan\n    configure_logging()\n  File \"/mnt/c/Users/ismae/OneDrive/Trainings/FastAPI/Mastering REST APIs with FastAPI/social_media_api/logging_conf.py\", line 30, in configure_logging\n    dictConfig(\n  File \"/home/isetti/.pyenv/versions/3.11.7/lib/python3.11/logging/config.py\", line 823, in dictConfig\n    dictConfigClass(config).configure()\n  File \"/home/isetti/.pyenv/versions/3.11.7/lib/python3.11/logging/config.py\", line 629, in configure\n    raise ValueError('Unable to configure logger '\nValueError: Unable to configure logger 'social_media_api'\n"}
+{"asctime": "2024-01-17T11:54:56", "msecs": 168.0, "levelname": "ERROR", "correlation_id": "-", "name": "uvicorn.error", "lineno": 57, "message": "Application startup failed. Exiting."}
+{"asctime": "2024-01-17T11:55:41", "msecs": 79.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 60, "message": "Application startup complete."}
+{"asctime": "2024-01-17T11:55:47", "msecs": 912.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 264, "message": "Shutting down"}
+{"asctime": "2024-01-17T11:55:48", "msecs": 16.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 65, "message": "Waiting for application shutdown."}
+{"asctime": "2024-01-17T11:55:48", "msecs": 19.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 76, "message": "Application shutdown complete."}
+{"asctime": "2024-01-17T11:55:48", "msecs": 22.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 86, "message": "Finished server process [1655]", "color_message": "Finished server process [\u001b[36m%d\u001b[0m]"}
