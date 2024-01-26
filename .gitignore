@@ -7,3 +7,4 @@ __pycache__
 .vscode/
 *.png
 .pytest_cache
+.ruff_cache
