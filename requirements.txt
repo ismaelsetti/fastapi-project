@@ -1,7 +1,9 @@
 fastapi
 uvicorn[standard]
 sqlalchemy==1.4.49
+psycopg2  # psycopg2-binary locally
 databases[aiosqlite]
+databases[asyncpg]
 httpx
 python-dotenv
 pydantic-settings
