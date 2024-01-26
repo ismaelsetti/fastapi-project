@@ -2,6 +2,7 @@ fastapi
 uvicorn[standard]
 sqlalchemy==1.4.49
 databases[aiosqlite]
+httpx
 python-dotenv
 pydantic-settings
 rich
@@ -11,3 +12,5 @@ logtail-python
 python-jose
 python-multipart
 passlib[bcrypt]
+aiofiles
+b2sdk

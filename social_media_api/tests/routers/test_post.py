@@ -2,44 +2,15 @@ import pytest
 from httpx import AsyncClient
 
 from social_media_api import security
-
-
-async def create_post(
-    body: str, async_client: AsyncClient, logged_in_token: str
-) -> dict:
-    response = await async_client.post(
-        "/post",
-        json={"body": body},
-        headers={"Authorization": f"Bearer {logged_in_token}"},
-    )
-    return response.json()
-
-
-async def create_comment(
-    body: str, post_id: int, async_client: AsyncClient, logged_in_token: str
-) -> dict:
-    response = await async_client.post(
-        "/comment",
-        json={"body": body, "post_id": post_id},
-        headers={"Authorization": f"Bearer {logged_in_token}"},
-    )
-    return response.json()
-
-
-async def like_post(
-    post_id: int, async_client: AsyncClient, logged_in_token: str
-) -> dict:
-    response = await async_client.post(
-        "/like",
-        json={"post_id": post_id},
-        headers={"Authorization": f"Bearer {logged_in_token}"},
-    )
-    return response.json()
+from social_media_api.tests.helpers import create_comment, create_post, like_post
 
 
 @pytest.fixture()
-async def created_post(async_client: AsyncClient, logged_in_token: str):
-    return await create_post("Test Post", async_client, logged_in_token)
+async def mock_generate_cute_creature_api(mocker):
+    return mocker.patch(
+        "social_media_api.tasks._generate_cute_creature_api",
+        return_value={"output_url": "http://example.net/image.jpg"},
+    )
 
 
 @pytest.fixture()
@@ -53,7 +24,7 @@ async def created_comment(
 
 @pytest.mark.anyio
 async def test_create_post(
-    async_client: AsyncClient, registered_user: dict, logged_in_token: str
+    async_client: AsyncClient, confirmed_user: dict, logged_in_token: str
 ):
     body = "Test Post"
 
@@ -67,18 +38,40 @@ async def test_create_post(
     assert {
         "id": 1,
         "body": body,
-        "user_id": registered_user["id"],
+        "user_id": confirmed_user["id"],
+        "image_url": None,
     }.items() <= response.json().items()
 
 
 @pytest.mark.anyio
+async def test_create_post_with_prompt(
+    async_client: AsyncClient, logged_in_token: str, mock_generate_cute_creature_api
+):
+    body = "Test Post"
+
+    response = await async_client.post(
+        "/post?prompt=A cat",
+        json={"body": body},
+        headers={"Authorization": f"Bearer {logged_in_token}"},
+    )
+
+    assert response.status_code == 201
+    assert {
+        "id": 1,
+        "body": body,
+        "image_url": None,
+    }.items() <= response.json().items()
+    mock_generate_cute_creature_api.assert_called()
+
+
+@pytest.mark.anyio
 async def test_create_post_expired_token(
-    async_client: AsyncClient, registered_user: str, mocker
+    async_client: AsyncClient, confirmed_user: str, mocker
 ):
     mocker.patch(
         "social_media_api.security.access_token_expire_minutes", return_value=-1
     )
-    token = security.create_access_token(registered_user["email"])
+    token = security.create_access_token(confirmed_user["email"])
     response = await async_client.post(
         "/post",
         json={"body": "Test Post"},
@@ -93,7 +86,7 @@ async def test_create_post_expired_token(
 async def test_create_comment(
     async_client: AsyncClient,
     created_post: dict,
-    registered_user: dict,
+    confirmed_user: dict,
     logged_in_token: str,
 ):
     body = "Test Comment"
@@ -109,7 +102,7 @@ async def test_create_comment(
         "id": 1,
         "body": body,
         "post_id": created_post["id"],
-        "user_id": registered_user["id"],
+        "user_id": confirmed_user["id"],
     }.items() <= response.json().items()
 
 

@@ -1,14 +1,16 @@
 import os
 from typing import Generator
+from unittest.mock import AsyncMock, Mock
 
 import pytest
 from fastapi.testclient import TestClient
-from httpx import AsyncClient
+from httpx import AsyncClient, Request, Response
 
 os.environ["ENV_STATE"] = "test"
 
 from social_media_api.database import database, user_table  # noqa: E402
 from social_media_api.main import app  # noqa: E402
+from social_media_api.tests.helpers import create_post  # noqa: E402
 
 
 @pytest.fixture(scope="session")
@@ -24,7 +26,7 @@ def client() -> Generator:
 @pytest.fixture(autouse=True)
 async def db() -> Generator:
     await database.connect()
-    yield
+    yield database
     await database.disconnect()
 
 
@@ -45,6 +47,34 @@ async def registered_user(async_client: AsyncClient) -> dict:
 
 
 @pytest.fixture()
-async def logged_in_token(async_client: AsyncClient, registered_user: dict) -> str:
-    response = await async_client.post("/token", json=registered_user)
+async def confirmed_user(registered_user: dict) -> dict:
+    query = (
+        user_table.update()
+        .where(user_table.c.email == registered_user["email"])
+        .values(confirmed=True)
+    )
+    await database.execute(query)
+    return registered_user
+
+
+@pytest.fixture()
+async def logged_in_token(async_client: AsyncClient, confirmed_user: dict) -> str:
+    response = await async_client.post("/token", json=confirmed_user)
     return response.json()["access_token"]
+
+
+@pytest.fixture(autouse=True)
+def mock_httpx_client(mocker):
+    mocked_client = mocker.patch("social_media_api.tasks.httpx.AsyncClient")
+
+    mocked_async_client = Mock()
+    response = Response(status_code=200, content="", request=Request("POST", "//"))
+    mocked_async_client.post = AsyncMock(return_value=response)
+    mocked_client.return_value.__aenter__.return_value = mocked_async_client
+
+    return mocked_async_client
+
+
+@pytest.fixture()
+async def created_post(async_client: AsyncClient, logged_in_token: str):
+    return await create_post("Test Post", async_client, logged_in_token)
